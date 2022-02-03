@@ -11,7 +11,7 @@ final class APICaller {
     static let shared = APICaller()
     
     struct Constants {
-        static let url = "https://www.mocky.io/v2/5addd58b30000066154b28c9"
+        static let url = "https://www.mocky.io/v2/"
         static let apiKey = ""
     }
     

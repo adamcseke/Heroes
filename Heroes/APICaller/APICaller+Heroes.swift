@@ -9,8 +9,8 @@ import Foundation
 
 extension APICaller {
     
-    public func getHeroes(completion: @escaping (Result<Heroes, Error>) -> Void) {
-        let url = Constants.url
+    public func getHeroes(param: String, completion: @escaping (Result<Heroes, Error>) -> Void) {
+        let url = Constants.url + "\(param)"
         request(urlString: url, completion: completion)
     }
 }

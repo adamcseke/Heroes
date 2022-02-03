@@ -12,10 +12,10 @@ import SDWebImage
 class MapViewController: UIViewController {
     
     var selectedHero: Avenger
-    let mapView = MKMapView()
-    var heroLocationMarker = MKPointAnnotation()
-    let heroImageView = UIImageView()
-    
+    var mapView: MKMapView!
+    var heroLocationMarker: MKPointAnnotation!
+    var heroImageView: UIImageView!
+    var imageContentView: UIView!
     
     init(selectedHero: Avenger) {
         self.selectedHero = selectedHero
@@ -38,11 +38,11 @@ class MapViewController: UIViewController {
     }
     
     func setupNavigationController() {
-        
         navigationItem.title = selectedHero.name
     }
     
     func setupMapView() {
+        mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.delegate = self
         view.addSubview(mapView)
@@ -62,7 +62,8 @@ class MapViewController: UIViewController {
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
     
-       
+        heroLocationMarker = MKPointAnnotation()
+
         heroLocationMarker.title = selectedHero.name
         heroLocationMarker.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         mapView.addAnnotation(heroLocationMarker)
@@ -77,14 +78,13 @@ extension MapViewController: MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "heroAnnotationView")
         }
+        heroImageView = UIImageView()
+        imageContentView = UIView()
         heroImageView.sd_setImage(with: URL(string: selectedHero.imageURL))
-        
-        annotationView?.image = heroImageView.image
-        annotationView?.layer.borderColor = UIColor(red: 200/255, green: 38/255, blue: 38/255, alpha: 0.5).cgColor
-        annotationView?.layer.borderWidth = 1
-        annotationView?.layer.cornerRadius = 18
-        annotationView?.layer.masksToBounds = true
-        annotationView?.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        heroImageView.translatesAutoresizingMaskIntoConstraints = false
+        imageContentView.addSubview(heroImageView)
+        imageContentView.setupImageView(of: heroImageView)
+        annotationView?.addSubview(imageContentView)
 
         annotationView?.canShowCallout = false
         return annotationView

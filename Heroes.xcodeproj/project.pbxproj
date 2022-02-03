@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		374450EC27ABBA1600C43865 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374450EB27ABBA1600C43865 /* UIView+Ext.swift */; };
 		37DA0BD027AA8B6C000A5D82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA0BCF27AA8B6C000A5D82 /* AppDelegate.swift */; };
 		37DA0BD227AA8B6C000A5D82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA0BD127AA8B6C000A5D82 /* SceneDelegate.swift */; };
 		37DA0BD427AA8B6C000A5D82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA0BD327AA8B6C000A5D82 /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		374450EB27ABBA1600C43865 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		37DA0BCC27AA8B6C000A5D82 /* Heroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heroes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DA0BCF27AA8B6C000A5D82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37DA0BD127AA8B6C000A5D82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				37DA0C0F27AAA419000A5D82 /* URLExtension.swift */,
+				374450EB27ABBA1600C43865 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				37DA0C0827AAA368000A5D82 /* Heroes.swift in Sources */,
 				37DA0C1227AAA4F8000A5D82 /* APICaller+Heroes.swift in Sources */,
 				37DA0C1027AAA419000A5D82 /* URLExtension.swift in Sources */,
+				374450EC27ABBA1600C43865 /* UIView+Ext.swift in Sources */,
 				37DA0C0127AA8DD7000A5D82 /* HeroesListViewController.swift in Sources */,
 				37DA0BD227AA8B6C000A5D82 /* SceneDelegate.swift in Sources */,
 				37DA0C0D27AAA3B5000A5D82 /* APICaller.swift in Sources */,
@@ -523,6 +527,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -551,6 +556,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

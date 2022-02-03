@@ -9,10 +9,11 @@ import UIKit
 
 class HeroesListViewController: UIViewController {
 
-    let tableView = UITableView()
+    var tableView: UITableView!
+    var param: String?
     var avengers: [Avenger] = [] {
         didSet {
-            self.tableView.reloadData()
+            self.tableView?.reloadData()
         }
     }
     override func viewDidLoad() {
@@ -22,15 +23,14 @@ class HeroesListViewController: UIViewController {
     func setup() {
         configureNavigationController()
         configureTableView()
-        getHeroesInfo()
+        getHeroesInfo(param: "5addd58b30000066154b28c9")
     }
     func configureNavigationController() {
-        view.backgroundColor = .red
         navigationItem.title = "Heroes"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    func getHeroesInfo() {
-        APICaller.shared.getHeroes { result in
+    func getHeroesInfo(param: String) {
+        APICaller.shared.getHeroes(param: param) { result in
             switch result {
                 
             case .success(let heroes):
@@ -41,6 +41,7 @@ class HeroesListViewController: UIViewController {
         }
     }
     func configureTableView() {
+        tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(HeroCell.self, forCellReuseIdentifier: "myCell")
         tableView.separatorStyle = .singleLine
@@ -49,12 +50,10 @@ class HeroesListViewController: UIViewController {
         tableView.rowHeight = 44
         view.addSubview(tableView)
         
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
 
@@ -74,12 +73,11 @@ extension HeroesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return avengers.count
     }
+}
+
+extension HeroesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let showHeroVC = MapViewController(selectedHero: avengers[indexPath.row])
         navigationController?.pushViewController(showHeroVC, animated: true)
     }
-}
-
-extension HeroesListViewController: UITableViewDelegate {
-    
 }
