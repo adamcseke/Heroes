@@ -11,11 +11,10 @@ import SDWebImage
 
 class MapViewController: UIViewController {
     
-    var selectedHero: Avenger
-    var mapView: MKMapView!
-    var heroLocationMarker: MKPointAnnotation!
-    var heroImageView: UIImageView!
-    var imageContentView: UIView!
+    private var selectedHero: Avenger
+    private var mapView: MKMapView!
+    private var heroLocationMarker: MKPointAnnotation!
+    private var imageContentView: MarkerView!
     
     init(selectedHero: Avenger) {
         self.selectedHero = selectedHero
@@ -25,23 +24,28 @@ class MapViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
-    func setup() {
+    private func setup() {
         setupNavigationController()
         setupMapView()
         showHeroPlace()
     }
     
-    func setupNavigationController() {
+    private func setupNavigationController() {
+        navigationController?.navigationBar.installBlurEffect()
         navigationItem.title = selectedHero.name
+        navigationItem.titleView?.tintColor = .label
     }
     
-    func setupMapView() {
+    private func setupMapView() {
         mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.delegate = self
@@ -55,7 +59,7 @@ class MapViewController: UIViewController {
         ])
     }
     
-    func showHeroPlace() {
+    private func showHeroPlace() {
         let latitude: CLLocationDegrees = Double(selectedHero.latitude)
         let longitude: CLLocationDegrees = Double(selectedHero.longitude)
         let regionDistance:CLLocationDistance = 1000
@@ -78,12 +82,9 @@ extension MapViewController: MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "heroAnnotationView")
         }
-        heroImageView = UIImageView()
-        imageContentView = UIView()
-        heroImageView.sd_setImage(with: URL(string: selectedHero.imageURL))
-        heroImageView.translatesAutoresizingMaskIntoConstraints = false
-        imageContentView.addSubview(heroImageView)
-        imageContentView.setupImageView(of: heroImageView)
+        imageContentView = MarkerView(width: 36, radius: 18)
+        imageContentView.setImageURL(imageURL: selectedHero.imageURL)
+        imageContentView.translatesAutoresizingMaskIntoConstraints = false
         annotationView?.addSubview(imageContentView)
 
         annotationView?.canShowCallout = false

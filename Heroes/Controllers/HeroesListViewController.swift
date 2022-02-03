@@ -9,27 +9,33 @@ import UIKit
 
 class HeroesListViewController: UIViewController {
 
-    var tableView: UITableView!
-    var param: String?
-    var avengers: [Avenger] = [] {
+    private var tableView: UITableView!
+    private var param: String?
+    private var avengers: [Avenger] = [] {
         didSet {
             self.tableView?.reloadData()
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    func setup() {
+    private func setup() {
         configureNavigationController()
         configureTableView()
         getHeroesInfo(param: "5addd58b30000066154b28c9")
     }
-    func configureNavigationController() {
+    private func configureNavigationController() {
         navigationItem.title = "Heroes"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.titleView?.tintColor = .label
+        navigationController?.navigationBar.installBlurEffect()
+        view.backgroundColor = .systemBackground
     }
-    func getHeroesInfo(param: String) {
+    private func getHeroesInfo(param: String) {
         APICaller.shared.getHeroes(param: param) { result in
             switch result {
                 
@@ -40,7 +46,7 @@ class HeroesListViewController: UIViewController {
             }
         }
     }
-    func configureTableView() {
+    private func configureTableView() {
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(HeroCell.self, forCellReuseIdentifier: "myCell")
@@ -63,10 +69,8 @@ extension HeroesListViewController: UITableViewDataSource {
             fatalError()
         }
         cell.accessoryType = .disclosureIndicator
-        
         let heroesInfo = avengers[indexPath.row]
-        cell.bind(imageURL: heroesInfo.imageURL,
-                  titleLabelText: heroesInfo.name)
+        cell.bind(imageURL: heroesInfo.imageURL, titleLabelText: heroesInfo.name)
         return cell
     }
     

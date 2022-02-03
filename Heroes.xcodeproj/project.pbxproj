@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		374450EC27ABBA1600C43865 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374450EB27ABBA1600C43865 /* UIView+Ext.swift */; };
+		374450F027ABE1DF00C43865 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374450EF27ABE1DF00C43865 /* MarkerView.swift */; };
+		374450F227AC085B00C43865 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374450F127AC085B00C43865 /* NavigationController.swift */; };
 		37DA0BD027AA8B6C000A5D82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA0BCF27AA8B6C000A5D82 /* AppDelegate.swift */; };
 		37DA0BD227AA8B6C000A5D82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA0BD127AA8B6C000A5D82 /* SceneDelegate.swift */; };
-		37DA0BD427AA8B6C000A5D82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA0BD327AA8B6C000A5D82 /* ViewController.swift */; };
 		37DA0BD927AA8B6D000A5D82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DA0BD827AA8B6D000A5D82 /* Assets.xcassets */; };
 		37DA0BDC27AA8B6D000A5D82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DA0BDA27AA8B6D000A5D82 /* LaunchScreen.storyboard */; };
 		37DA0BE727AA8B6D000A5D82 /* HeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA0BE627AA8B6D000A5D82 /* HeroesTests.swift */; };
@@ -45,11 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		374450EB27ABBA1600C43865 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		374450EF27ABE1DF00C43865 /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
+		374450F127AC085B00C43865 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		37DA0BCC27AA8B6C000A5D82 /* Heroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heroes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DA0BCF27AA8B6C000A5D82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37DA0BD127AA8B6C000A5D82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		37DA0BD327AA8B6C000A5D82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		37DA0BD827AA8B6D000A5D82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37DA0BDB27AA8B6D000A5D82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37DA0BDD27AA8B6D000A5D82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,7 +124,6 @@
 				37DA0BFF27AA8DB4000A5D82 /* Controllers */,
 				37DA0BCF27AA8B6C000A5D82 /* AppDelegate.swift */,
 				37DA0BD127AA8B6C000A5D82 /* SceneDelegate.swift */,
-				37DA0BD327AA8B6C000A5D82 /* ViewController.swift */,
 				37DA0BD827AA8B6D000A5D82 /* Assets.xcassets */,
 				37DA0BDA27AA8B6D000A5D82 /* LaunchScreen.storyboard */,
 				37DA0BDD27AA8B6D000A5D82 /* Info.plist */,
@@ -162,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				37DA0C0327AA96CB000A5D82 /* Cells */,
+				374450EF27ABE1DF00C43865 /* MarkerView.swift */,
+				374450F127AC085B00C43865 /* NavigationController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				37DA0C0F27AAA419000A5D82 /* URLExtension.swift */,
-				374450EB27ABBA1600C43865 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -340,13 +340,13 @@
 				37DA0C1727AABAF3000A5D82 /* MapViewController.swift in Sources */,
 				37DA0C0527AA9713000A5D82 /* HeroCell.swift in Sources */,
 				37DA0C0A27AAA37B000A5D82 /* Avenger.swift in Sources */,
-				37DA0BD427AA8B6C000A5D82 /* ViewController.swift in Sources */,
 				37DA0BD027AA8B6C000A5D82 /* AppDelegate.swift in Sources */,
+				374450F227AC085B00C43865 /* NavigationController.swift in Sources */,
 				37DA0C0827AAA368000A5D82 /* Heroes.swift in Sources */,
 				37DA0C1227AAA4F8000A5D82 /* APICaller+Heroes.swift in Sources */,
 				37DA0C1027AAA419000A5D82 /* URLExtension.swift in Sources */,
-				374450EC27ABBA1600C43865 /* UIView+Ext.swift in Sources */,
 				37DA0C0127AA8DD7000A5D82 /* HeroesListViewController.swift in Sources */,
+				374450F027ABE1DF00C43865 /* MarkerView.swift in Sources */,
 				37DA0BD227AA8B6C000A5D82 /* SceneDelegate.swift in Sources */,
 				37DA0C0D27AAA3B5000A5D82 /* APICaller.swift in Sources */,
 			);

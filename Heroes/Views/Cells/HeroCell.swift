@@ -10,9 +10,8 @@ import SDWebImage
 
 class HeroCell: UITableViewCell {
 
-    var heroImageView: UIImageView!
-    var heroTitleLabel: UILabel!
-    var imageContentView: UIView!
+    private var heroTitleLabel: UILabel!
+    private var imageContentView: MarkerView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,38 +23,38 @@ class HeroCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup() {
+    private func setup() {
         configureHeroImageView()
         configureHeroTitleLabel()
     }
     
-    func configureHeroImageView() {
-        heroImageView = UIImageView()
-        imageContentView = UIView()
+    private func configureHeroImageView() {
+        imageContentView = MarkerView(width: 26, radius: 13)
         contentView.addSubview(imageContentView)
-        heroImageView.translatesAutoresizingMaskIntoConstraints = false
-        imageContentView.addSubview(heroImageView)
-        imageContentView.setupImageView(of: heroImageView)
+        imageContentView.translatesAutoresizingMaskIntoConstraints = false
+        
         
         NSLayoutConstraint.activate([
-            heroImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            heroImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            imageContentView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            imageContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9),
+            imageContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9)
         ])
     }
     
-    func configureHeroTitleLabel() {
+    private func configureHeroTitleLabel() {
         heroTitleLabel = UILabel()
         heroTitleLabel.textColor = .label
         heroTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(heroTitleLabel)
         
         NSLayoutConstraint.activate([
-            heroTitleLabel.leadingAnchor.constraint(equalTo: heroImageView.trailingAnchor, constant: 17),
+            heroTitleLabel.leadingAnchor.constraint(equalTo: imageContentView.trailingAnchor, constant: 17),
             heroTitleLabel.centerYAnchor.constraint(equalTo: imageContentView.centerYAnchor)
         ])
     }
     func bind(imageURL: String, titleLabelText: String) {
-        heroImageView.sd_setImage(with: URL(string: imageURL))
+        imageContentView.setImageURL(imageURL: imageURL)
         heroTitleLabel.text = titleLabelText
     }
 }
