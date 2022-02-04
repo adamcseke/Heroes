@@ -15,13 +15,14 @@ class MarkerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
     }
+    
     init(width: CGFloat, radius: CGFloat) {
         super.init(frame: .zero)
         configureMarkerImageView(width: width, radius: radius)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     private func configureMarkerImageView(width: CGFloat, radius: CGFloat) {

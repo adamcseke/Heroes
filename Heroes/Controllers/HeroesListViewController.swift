@@ -16,25 +16,29 @@ class HeroesListViewController: UIViewController {
             self.tableView?.reloadData()
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
+    
     private func setup() {
         configureNavigationController()
         configureTableView()
         getHeroesInfo(param: "5addd58b30000066154b28c9")
     }
+    
     private func configureNavigationController() {
         navigationItem.title = "Heroes"
         navigationItem.titleView?.tintColor = .label
-        navigationController?.navigationBar.installBlurEffect()
         view.backgroundColor = .systemBackground
     }
+    
     private func getHeroesInfo(param: String) {
         APICaller.shared.getHeroes(param: param) { result in
             switch result {
@@ -46,6 +50,7 @@ class HeroesListViewController: UIViewController {
             }
         }
     }
+    
     private func configureTableView() {
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +71,7 @@ class HeroesListViewController: UIViewController {
 extension HeroesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as? HeroCell else {
-            fatalError()
+            return UITableViewCell()
         }
         cell.accessoryType = .disclosureIndicator
         let heroesInfo = avengers[indexPath.row]
@@ -83,5 +88,6 @@ extension HeroesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let showHeroVC = MapViewController(selectedHero: avengers[indexPath.row])
         navigationController?.pushViewController(showHeroVC, animated: true)
+        
     }
 }

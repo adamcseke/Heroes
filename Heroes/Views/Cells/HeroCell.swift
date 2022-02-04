@@ -20,7 +20,8 @@ class HeroCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setup()
     }
 
     private func setup() {
@@ -53,6 +54,7 @@ class HeroCell: UITableViewCell {
             heroTitleLabel.centerYAnchor.constraint(equalTo: imageContentView.centerYAnchor)
         ])
     }
+    
     func bind(imageURL: String, titleLabelText: String) {
         imageContentView.setImageURL(imageURL: imageURL)
         heroTitleLabel.text = titleLabelText
