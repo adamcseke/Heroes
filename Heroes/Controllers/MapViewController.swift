@@ -22,7 +22,7 @@ class MapViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
@@ -74,17 +74,14 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "heroAnnotationView")
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "heroAnnotationView")
-        }
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "heroAnnotationView")
+
         imageContentView = MarkerView(width: 36, radius: 18)
         imageContentView.setImageURL(imageURL: selectedHero?.imageURL ?? "")
         imageContentView.translatesAutoresizingMaskIntoConstraints = false
-        annotationView?.addSubview(imageContentView)
+        annotationView.addSubview(imageContentView)
 
-        annotationView?.canShowCallout = false
+        annotationView.canShowCallout = false
         return annotationView
     }
 }
